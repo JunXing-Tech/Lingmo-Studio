@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: lingmo-studio-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  # springdoc-openapi 配置
+  springdoc:
+    group-configs:
+      - group: 'default'
+        paths-to-match: '/**'
+        packages-to-scan: tech.jxing.lingmostudiobackend.controller
+  # knife4j 接口文档配置
+  knife4j:
+    enable: true
+    setting:
+      language: zh_cn
+  # MyBatis-Flex 配置
+  mybatis-flex:
+    configuration:
+      map-underscore-to-camel-case: false
+server:
+  port: 8567
+  servlet:
+    context-path: /api
