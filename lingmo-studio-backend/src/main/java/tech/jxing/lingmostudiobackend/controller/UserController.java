@@ -34,7 +34,7 @@ public class UserController {
      * @return 注册结果
      */
     @PostMapping("/register")
-    public BaseResponse<Long> userRegister(UserRegisterRequest userRegisterRequest) {
+    public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         // 注册参数校验，如果参数不存在，则抛出参数错误异常
         ThrowUtils.throwIf(userRegisterRequest == null, ErrorCode.PARAMS_ERROR);
         // 获取注册参数
@@ -55,7 +55,7 @@ public class UserController {
      * @return 脱敏后的用户登录信息
      */
     @PostMapping("/login")
-    public BaseResponse<LoginUserVO> userLogin(UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         // 校验用户登录参数
         ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
         // 获取用户登录参数
