@@ -3,12 +3,12 @@
     <div class="footer-content">
       <p class="copyright">
         <a
-          href="https://www.codefather.cn"
+          href="https://github.com/JunXing-Tech/Lingmo-Studio"
           target="_blank"
           rel="noopener noreferrer"
           class="author-link"
         >
-          编程导航原创项目
+          GitHub项目仓库
         </a>
       </p>
     </div>

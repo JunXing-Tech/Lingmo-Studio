@@ -1,48 +1,57 @@
-# lingmo-studio-frontend
+# 前端项目
 
-This template should help get you started developing with Vue 3 in Vite.
+基于 Vue 3 + Vite + Ant Design Vue 的前端项目模板。
 
-## Recommended IDE Setup
+## 环境要求
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Node.js 22+
 
-## Recommended Browser Setup
+## 技术栈
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue 3
+- Vite
+- TypeScript
+- Ant Design Vue
+- Axios
+- Pinia
+- Vue Router
 
-## Type Support for `.vue` Imports in TS
+## 开发
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+# 安装依赖
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# 启动开发服务器
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+# 构建生产版本
 npm run build
+
+# 代码格式化
+npm run format
+
+# 代码检查
+npm run lint
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 生成 API 代码
 
-```sh
-npm run lint
+```bash
+npm run openapi2ts
+```
+
+## 目录结构
+
+```
+src/
+├── api/           # API 接口定义
+├── assets/        # 静态资源
+├── components/    # 公共组件
+├── config/        # 配置文件
+├── layouts/       # 布局组件
+├── pages/         # 页面组件
+├── router/        # 路由配置
+├── stores/        # Pinia 状态管理
+└── utils/         # 工具函数
 ```
