@@ -2,7 +2,12 @@ spring:
   application:
     name: lingmo-studio-backend
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:dev}
+    active: ${SPRING_PROFILES_ACTIVE:prod}
+    # session 配置
+    session:
+      store-type: redis
+      # session 30 天过期
+      timeout: 2592000
   # springdoc-openapi 配置
   springdoc:
     group-configs:
@@ -22,3 +27,7 @@ server:
   port: 8567
   servlet:
     context-path: /api
+    # cookie 30 天过期
+    session:
+      cookie:
+        max-age: 2592000
