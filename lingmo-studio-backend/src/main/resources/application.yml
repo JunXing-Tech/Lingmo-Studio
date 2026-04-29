@@ -2,7 +2,7 @@ spring:
   application:
     name: lingmo-studio-backend
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:prod}
+    active: ${SPRING_PROFILES_ACTIVE:local}
     # session 配置
     session:
       store-type: redis
