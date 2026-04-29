@@ -1,23 +1,28 @@
 package tech.jxing.lingmostudiobackend.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.spring.service.impl.ServiceImpl;
-import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import tech.jxing.lingmostudiobackend.exception.BusinessException;
 import tech.jxing.lingmostudiobackend.exception.ErrorCode;
 import tech.jxing.lingmostudiobackend.mapper.UserMapper;
+import tech.jxing.lingmostudiobackend.model.dto.user.UserQueryRequest;
 import tech.jxing.lingmostudiobackend.model.entity.User;
 import tech.jxing.lingmostudiobackend.model.enums.UserRoleEnum;
 import tech.jxing.lingmostudiobackend.model.vo.LoginUserVO;
+import tech.jxing.lingmostudiobackend.model.vo.UserVO;
 import tech.jxing.lingmostudiobackend.service.UserService;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static tech.jxing.lingmostudiobackend.constant.UserConstant.USER_LOGIN_STATE;
 
@@ -181,5 +186,58 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return loginUserVO;
     }
 
+    /**
+     * 获取脱敏用户信息
+     *
+     * @param user 用户
+     * @return 脱敏后用户信息
+     */
+    @Override
+    public UserVO getUserVO(User user) {
+        if (user == null) {
+            return null;
+        }
+        UserVO userVO = new UserVO();
+        BeanUtil.copyProperties(user, userVO);
+        return userVO;
+    }
 
+    /**
+     * 获取脱敏用户信息列表
+     *
+     * @param userList 用户列表
+     * @return 脱敏后用户信息列表
+     */
+    @Override
+    public List<UserVO> getUserVOList(List<User> userList) {
+        if (CollUtil.isEmpty(userList)) {
+            return new ArrayList<>();
+        }
+        return userList.stream()
+                .map(this::getUserVO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public QueryWrapper getQueryWrapper(UserQueryRequest userQueryRequest) {
+        if (userQueryRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
+        }
+        Long id = userQueryRequest.getId();
+        String userAccount = userQueryRequest.getUserAccount();
+        String userName = userQueryRequest.getUserName();
+        String userProfile = userQueryRequest.getUserProfile();
+        String userRole = userQueryRequest.getUserRole();
+        String sortField = userQueryRequest.getSortField();
+        String sortOrder = userQueryRequest.getSortOrder();
+        return QueryWrapper.create()
+                // where id = ${id}
+                .eq("id", id)
+                // and userRole = ${userRole}
+                .eq("userRole", userRole)
+                .like("userAccount", userAccount)
+                .like("userName", userName)
+                .like("userProfile", userProfile)
+                .orderBy(sortField, "ascend".equals(sortOrder));
+    }
 }
