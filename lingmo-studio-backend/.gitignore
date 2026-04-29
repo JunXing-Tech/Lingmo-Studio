@@ -35,3 +35,6 @@ build/
 .env
 src/main/resources/application-dev.yml
 src/main/resources/application-prod.yml
+
+# 忽略整个 .idea 目录
+.idea/
