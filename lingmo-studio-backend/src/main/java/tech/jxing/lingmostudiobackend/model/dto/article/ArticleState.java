@@ -65,7 +65,7 @@ public class ArticleState implements Serializable {
     public static class TitleResult implements Serializable {
         /** 主标题 */
         private String mainTitle;
-        /** 副标题/引言 */
+        /** 副标题 /引言 */
         private String subTitle;
     }
 
