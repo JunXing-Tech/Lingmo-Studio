@@ -1,0 +1,8 @@
+/**
+ * 环境变量配置
+ */
+
+// API 基础地址
+export const API_BASE_URL = 'http://localhost:8567/api'
+
+export const API_PROD_URL = '/api'
