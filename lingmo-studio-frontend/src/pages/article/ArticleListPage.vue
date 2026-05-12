@@ -33,14 +33,14 @@
               <SearchOutlined class="search-icon" />
             </template>
           </a-input-search>
-          
+
           <a-range-picker
             v-model:value="dateRange"
             :placeholder="['开始日期', '结束日期']"
             @change="handleDateChange"
             class="date-picker"
           />
-          
+
           <a-select
             v-model:value="statusFilter"
             placeholder="全部状态"
@@ -56,7 +56,7 @@
             <a-select-option value="FAILED">失败</a-select-option>
           </a-select>
         </div>
-        
+
         <div class="filter-right">
           <span class="total-count">共 {{ pagination.total }} 篇文章</span>
         </div>
@@ -139,11 +139,11 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
-import { 
-  PlusOutlined, 
-  SearchOutlined, 
-  EyeOutlined, 
-  DownloadOutlined, 
+import {
+  PlusOutlined,
+  SearchOutlined,
+  EyeOutlined,
+  DownloadOutlined,
   DeleteOutlined,
   FileTextOutlined
 } from '@ant-design/icons-vue'
@@ -211,20 +211,20 @@ const loadData = async () => {
     })
     const pageData = res.data.data
     let records = pageData?.records || []
-    
+
     // 前端过滤（如果后端不支持）
     if (searchKeyword.value) {
       const keyword = searchKeyword.value.toLowerCase()
-      records = records.filter((item: API.ArticleVO) => 
+      records = records.filter((item: API.ArticleVO) =>
         item.mainTitle?.toLowerCase().includes(keyword) ||
         item.topic?.toLowerCase().includes(keyword)
       )
     }
-    
+
     if (statusFilter.value) {
       records = records.filter((item: API.ArticleVO) => item.status === statusFilter.value)
     }
-    
+
     if (dateRange.value) {
       const [start, end] = dateRange.value
       records = records.filter((item: API.ArticleVO) => {
@@ -232,7 +232,7 @@ const loadData = async () => {
         return createTime.isAfter(start.startOf('day')) && createTime.isBefore(end.endOf('day'))
       })
     }
-    
+
     dataSource.value = records
     pagination.value.total = pageData?.totalRow || 0
   } catch (error: any) {
@@ -289,7 +289,7 @@ const exportArticle = async (record: API.ArticleVO) => {
 
     let markdown = `# ${article.mainTitle}\n\n`
     markdown += `> ${article.subTitle}\n\n`
-    
+
     if (article.fullContent) {
       markdown += article.fullContent
     } else {
@@ -303,7 +303,7 @@ const exportArticle = async (record: API.ArticleVO) => {
     a.download = `${article.mainTitle || '文章'}.md`
     a.click()
     URL.revokeObjectURL(url)
-    
+
     message.success('导出成功')
   } catch (error: any) {
     message.error(error.message || '导出失败')
@@ -560,13 +560,13 @@ onMounted(() => {
     border-radius: var(--radius-full);
     font-size: 12px;
     font-weight: 500;
-    
+
     .status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
     }
-    
+
     &.status-completed {
       background: rgba(34, 197, 94, 0.1);
       color: var(--color-primary-dark);
@@ -575,7 +575,7 @@ onMounted(() => {
         background: var(--color-primary);
       }
     }
-    
+
     &.status-processing {
       background: rgba(59, 130, 246, 0.1);
       color: #2563EB;
@@ -585,7 +585,7 @@ onMounted(() => {
         animation: pulse 1.5s infinite;
       }
     }
-    
+
     &.status-pending {
       background: var(--color-background-tertiary);
       color: var(--color-text-secondary);
@@ -594,7 +594,7 @@ onMounted(() => {
         background: var(--color-text-muted);
       }
     }
-    
+
     &.status-failed {
       background: rgba(239, 68, 68, 0.1);
       color: #DC2626;
@@ -624,23 +624,23 @@ onMounted(() => {
     align-items: center;
     gap: 4px;
     transition: all var(--transition-fast);
-    
+
     &.view-btn {
       color: var(--color-primary);
-      
+
       &:hover {
         color: var(--color-primary-dark);
       }
     }
-    
+
     &.export-btn {
       color: var(--color-text-secondary);
-      
+
       &:hover {
         color: var(--color-text);
       }
     }
-    
+
     &.delete-btn {
       &:hover {
         color: #DC2626;
