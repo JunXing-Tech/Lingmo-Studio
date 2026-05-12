@@ -8,7 +8,7 @@
           rel="noopener noreferrer"
           class="author-link"
         >
-          GitHub项目仓库
+          灵墨协同（Lingmo Studio）开源仓库
         </a>
       </p>
     </div>
@@ -21,17 +21,43 @@
 
 <style scoped>
 .footer {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: transparent;
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  border-top: 1px solid rgba(102, 126, 234, 0.1);
+  padding: 40px 20px;
+  margin-top: 0;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .copyright {
   margin: 0;
-  color: #666;
+  color: var(--color-text-muted);
   font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.author-link {
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.author-link:hover {
+  color: var(--color-xuanqing);
 }
 </style>
