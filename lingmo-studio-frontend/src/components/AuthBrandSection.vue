@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-section">
+  <div v-if="!isMobile" class="brand-section">
     <div class="brand-bg"></div>
     <div class="brand-content">
       <div class="brand-logo">
@@ -27,6 +27,9 @@
 
 <script setup lang="ts">
 import { CheckCircleOutlined } from '@ant-design/icons-vue'
+import { useMobile } from '@/hooks/useMobile.ts'
+
+const { isMobile } = useMobile()
 </script>
 
 <style scoped>

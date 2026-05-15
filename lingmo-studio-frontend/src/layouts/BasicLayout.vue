@@ -19,6 +19,7 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
 <style scoped>
 .basic-layout {
   background: none;
+  min-height: 100vh;
 }
 
 .main-content {
@@ -26,5 +27,15 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
   padding: 0;
   background: none;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 如果有需要全局约束的主体宽度，可以在这里通过媒体查询处理 */
+@media screen and (max-width: 768px) {
+  .main-content {
+    /* 移动端确保没有多余的外边距导致出现横向滚动条 */
+    overflow-x: hidden;
+  }
 }
 </style>

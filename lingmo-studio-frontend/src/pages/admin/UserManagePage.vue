@@ -39,6 +39,7 @@
           :columns="columns"
           :data-source="data"
           :pagination="pagination"
+          :scroll="{ x: 'max-content' }"
           @change="doTableChange"
           class="user-table"
         >
@@ -345,29 +346,40 @@ onMounted(() => {
       color: #DC2626;
     }
   }
-}
 
-@media (max-width: 768px) {
-  #userManagePage {
+  /* 移动端响应式样式 */
+  @media screen and (max-width: 768px) {
     .page-header {
-      padding: 24px 20px;
+      padding: 24px 16px;
     }
 
-    .page-title {
-      font-size: 22px;
+    .container {
+      padding: 0 16px;
+    }
+
+    .content-card {
+      :deep(.ant-card-body) {
+        padding: 16px;
+      }
     }
 
     .search-form {
       flex-direction: column;
       align-items: stretch;
-
+      
       :deep(.ant-form-item) {
-        width: 100%;
+        margin-right: 0;
+        margin-bottom: 12px;
       }
     }
 
     .search-input {
       width: 100%;
+    }
+
+    .search-btn {
+      width: 100%;
+      margin-top: 4px;
     }
   }
 }

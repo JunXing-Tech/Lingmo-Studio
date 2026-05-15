@@ -236,100 +236,87 @@ const handleSubmit = async (values: any) => {
 /* 右侧表单区域 */
 .form-section {
   flex: 1;
+  padding: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 40px;
   background: white;
 }
 
 .form-card {
   width: 100%;
-  max-width: 320px;
+  max-width: 360px;
 }
 
 .form-title {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 600;
   color: var(--color-text);
-  margin: 0 0 6px;
-  letter-spacing: -0.5px;
+  margin: 0 0 8px;
 }
 
 .form-subtitle {
-  font-size: 14px;
-  color: var(--color-text-secondary);
+  font-size: 15px;
+  color: var(--color-text-muted);
   margin: 0 0 32px;
 }
 
-.login-form {
-  margin-bottom: 24px;
-}
-
+/* 覆盖 Antd 输入框样式 */
 .form-input {
-  border-radius: var(--radius-lg);
-  border-color: var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  background: var(--color-zhibai);
+  border: 1px solid var(--color-border-light);
   transition: all var(--transition-fast);
 }
 
-.form-input:hover {
-  border-color: var(--color-primary-light);
-}
-
-.form-input:focus,
-.form-input:focus-within {
+.form-input:hover, .form-input:focus {
+  background: white;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-}
-
-.form-input :deep(.ant-input) {
-  padding: 12px 14px;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.1);
 }
 
 .input-icon {
   color: var(--color-text-muted);
   font-size: 16px;
+  margin-right: 8px;
 }
 
 .submit-btn {
+  margin-top: 8px;
   height: 48px;
+  border-radius: var(--radius-md);
   font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--radius-lg);
-  background: var(--gradient-primary) !important;
-  border: none !important;
-  color: white !important;
-  box-shadow: var(--shadow-green) !important;
-  transition: opacity var(--transition-normal) !important;
+  font-weight: 500;
+  background: var(--gradient-primary);
+  border: none;
+  box-shadow: var(--shadow-green);
+  transition: all var(--transition-fast);
 }
 
-.submit-btn:hover,
-.submit-btn:focus,
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+}
+
 .submit-btn:active {
-  background: var(--gradient-primary) !important;
-  border: none !important;
-  color: white !important;
-  box-shadow: var(--shadow-green) !important;
-  opacity: 0.92;
-}
-
-.submit-btn :deep(.ant-wave) {
-  display: none;
+  transform: translateY(1px);
 }
 
 .form-footer {
   text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
 }
 
 .footer-text {
-  color: var(--color-text-secondary);
-  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 .register-link {
   color: var(--color-primary);
-  font-weight: 600;
-  margin-left: 4px;
+  font-weight: 500;
+  margin-left: 8px;
   transition: color var(--transition-fast);
 }
 
@@ -337,32 +324,31 @@ const handleSubmit = async (values: any) => {
   color: var(--color-primary-dark);
 }
 
-/* 响应式 */
-@media (max-width: 768px) {
-  .auth-container {
-    flex-direction: column;
-    min-height: auto;
-    border-radius: var(--radius-xl);
-  }
-  
-  .brand-section {
-    padding: 32px 24px;
-  }
-  
-  .brand-title {
-    font-size: 22px;
-  }
-  
-  .brand-features {
-    display: none;
-  }
-  
-  .form-section {
-    padding: 32px 24px;
+/* 移动端响应式样式 */
+@media screen and (max-width: 768px) {
+  #userLoginPage {
+    padding: 0;
+    align-items: flex-start; /* 移动端靠上对齐 */
+    background: white; /* 移动端背景设为纯白 */
   }
 
-  .form-title {
-    font-size: 22px;
+  .auth-container {
+    box-shadow: none; /* 移除外层阴影 */
+    border-radius: 0;
+  }
+
+  .brand-section {
+    display: none; /* 移动端隐藏左侧品牌宣传区 */
+  }
+
+  .form-section {
+    padding: 32px 24px;
+    align-items: flex-start; /* 表单靠上对齐 */
+    margin-top: 20px;
+  }
+
+  .form-card {
+    max-width: 100%; /* 撑满屏幕宽度 */
   }
 }
 </style>

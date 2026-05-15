@@ -390,51 +390,68 @@ onMounted(() => {
   .content-section {
     margin-bottom: 28px;
 
+    /* Markdown 样式 */
     .markdown-content {
-      line-height: 2;
       font-size: 16px;
-      color: var(--color-mohei);
+      line-height: 1.8;
+      color: var(--color-text);
 
-      :deep(h2) {
-        font-family: var(--font-serif);
-        font-size: 24px;
-        font-weight: 700;
-        margin: 40px 0 20px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--color-border);
-        color: var(--color-xuanqing);
-      }
-
-      :deep(h3) {
-        font-family: var(--font-serif);
-        font-size: 20px;
-        font-weight: 700;
-        margin: 32px 0 16px;
+      :deep(h1),
+      :deep(h2),
+      :deep(h3),
+      :deep(h4) {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
         color: var(--color-xuanqing);
       }
 
       :deep(p) {
-        margin-bottom: 20px;
-        text-indent: 2em;
-        letter-spacing: 0.01em;
+        margin-bottom: 1.2em;
       }
 
-      :deep(ul), :deep(ol) {
-        margin-bottom: 14px;
-        padding-left: 2em;
+      :deep(ul),
+      :deep(ol) {
+        margin-bottom: 1.2em;
+        padding-left: 24px;
       }
 
       :deep(li) {
-        margin-bottom: 6px;
-        color: var(--color-text);
+        margin-bottom: 0.5em;
+      }
+
+      :deep(blockquote) {
+        margin: 1.5em 0;
+        padding: 16px 20px;
+        border-left: 4px solid var(--color-primary);
+        background: var(--color-background-secondary);
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        color: var(--color-text-secondary);
+      }
+
+      :deep(pre) {
+        background: #f5f5f5;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        overflow-x: auto;
+        margin: 1.5em 0;
+        max-width: 100%;
+      }
+
+      :deep(code) {
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        font-size: 14px;
       }
 
       :deep(img) {
-        display: block;
         max-width: 100%;
-        margin: 20px auto;
+        height: auto;
         border-radius: var(--radius-md);
-        box-shadow: var(--shadow-md);
+        margin: 1em 0;
+      }
+
+      :deep(video) {
+        max-width: 100%;
+        height: auto;
       }
     }
   }
@@ -489,23 +506,41 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 768px) {
-  .article-detail-page {
-    .article-card {
-      :deep(.ant-card-body) {
-        padding: 24px;
-      }
-    }
+/* 响应式样式 */
+@media screen and (max-width: 768px) {
+  .header-container {
+    padding: 12px 16px;
+  }
 
-    .title-section {
-      .main-title {
-        font-size: 22px;
-      }
+  .header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 
-      .sub-title {
-        font-size: 14px;
-      }
+  .container {
+    padding: 16px;
+  }
+
+  .article-card {
+    :deep(.ant-card-body) {
+      padding: 16px;
     }
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .sub-title {
+    font-size: 16px;
+  }
+
+  .markdown-content {
+    font-size: 15px; /* 移动端字号稍微调小，但也保持可读性 */
+  }
+
+  .images-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

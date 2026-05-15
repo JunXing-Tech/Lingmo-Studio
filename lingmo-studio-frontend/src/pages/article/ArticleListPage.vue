@@ -729,4 +729,37 @@ onMounted(() => {
     }
   }
 }
+/* 响应式样式 */
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-left {
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    width: 100% !important;
+  }
+  
+  .date-picker {
+    width: 100%;
+  }
+  
+  .status-select {
+    width: 100% !important;
+  }
+  
+  .filter-right {
+    justify-content: flex-end;
+  }
+}
 </style>

@@ -88,3 +88,11 @@
   --breakpoint-xl: 1200px;
   --breakpoint-2xl: 1400px;
 }
+
+/* 
+  全局移动端适配建议媒体查询写法:
+  @media screen and (max-width: 768px) {
+    ... 移动端样式
+  }
+*/
+

@@ -1476,4 +1476,53 @@ onBeforeUnmount(() => {
     padding: 20px;
   }
 }
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .input-state {
+    padding-top: 20px;
+  }
+  
+  .input-card {
+    padding: 24px 16px;
+    border-radius: var(--radius-xl);
+  }
+  
+  .input-title {
+    font-size: 24px;
+  }
+  
+  .topic-textarea {
+    width: 100% !important;
+  }
+  
+  .create-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .preview-header {
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    font-size: 22px;
+  }
+  
+  .article-subtitle {
+    font-size: 14px;
+  }
+  
+  .markdown-body {
+    font-size: 15px;
+  }
+  
+  .markdown-body :deep(img),
+  .markdown-body :deep(video),
+  .markdown-body :deep(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
 </style>

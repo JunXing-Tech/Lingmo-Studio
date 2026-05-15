@@ -49,6 +49,7 @@
   color: var(--color-text-muted);
   font-size: 14px;
   letter-spacing: 0.5px;
+  line-height: 1.8;
 }
 
 .author-link {
@@ -59,5 +60,19 @@
 
 .author-link:hover {
   color: var(--color-xuanqing);
+}
+
+/* 移动端响应式样式 */
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 24px 16px;
+  }
+  
+  .copyright {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column; /* 将可能的多段内容改为垂直堆叠 */
+    gap: 8px;
+  }
 }
 </style>

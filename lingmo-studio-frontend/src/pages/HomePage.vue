@@ -709,22 +709,31 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 768px) {
+/* 响应式样式 */
+@media screen and (max-width: 768px) {
   .hero-section {
-    padding: 60px 20px 80px;
+    padding: 60px 16px 80px;
   }
   
   .hero-title {
     font-size: 36px;
   }
-
+  
   .hero-subtitle {
     font-size: 16px;
   }
   
   .input-wrapper {
     flex-direction: column;
-    padding: 12px;
+    padding: 16px;
+  }
+  
+  .topic-input {
+    width: 100%;
+    border-bottom: 1px solid var(--color-border-light) !important;
+    border-radius: 0;
+    padding: 8px 0 16px;
+    margin-bottom: 16px;
   }
   
   .cta-btn {
@@ -733,11 +742,11 @@ onMounted(() => {
   }
   
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 移动端改为单列 */
   }
   
   .articles-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 移动端改为单列 */
   }
   
   .section-title {

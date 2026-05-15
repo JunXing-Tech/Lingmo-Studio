@@ -13,8 +13,8 @@
         </RouterLink>
       </div>
 
-      <!-- 中间：导航菜单 -->
-      <nav class="nav-center">
+      <!-- 中间：导航菜单 (PC端显示) -->
+      <nav v-if="!isMobile" class="nav-center">
         <RouterLink
           v-for="item in menuItems"
           :key="item.key"
@@ -26,8 +26,13 @@
         </RouterLink>
       </nav>
 
-      <!-- 右侧：用户操作区域 -->
+      <!-- 右侧：用户操作区域 & 移动端汉堡菜单 -->
       <div class="header-right">
+        <!-- 移动端汉堡菜单按钮 -->
+        <div v-if="isMobile" class="mobile-menu-btn" @click="mobileMenuVisible = true">
+          <MenuOutlined />
+        </div>
+
         <div v-if="loginUserStore.loginUser.id" class="user-dropdown">
           <a-dropdown>
             <a-space class="user-info">
@@ -49,6 +54,28 @@
         </div>
       </div>
     </div>
+
+    <!-- 移动端抽屉菜单 -->
+    <a-drawer
+      v-model:open="mobileMenuVisible"
+      title="灵墨协同"
+      placement="right"
+      :closable="true"
+      :width="250"
+    >
+      <div class="mobile-menu-list">
+        <RouterLink
+          v-for="item in menuItems"
+          :key="item.key"
+          :to="item.key"
+          :class="['mobile-nav-item', { active: selectedKeys.includes(item.key) }]"
+          @click="mobileMenuVisible = false"
+        >
+          <component :is="item.icon" class="nav-icon" />
+          <span>{{ item.label }}</span>
+        </RouterLink>
+      </div>
+    </a-drawer>
   </a-layout-header>
 </template>
 
@@ -58,16 +85,21 @@ import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
 import { useLoginUserStore } from '@/stores/loginUser.ts'
 import { userLogout } from '@/api/userController.ts'
+import { useMobile } from '@/hooks/useMobile.ts'
 import {
   LogoutOutlined,
   HomeOutlined,
   EditOutlined,
   UnorderedListOutlined,
-  SettingOutlined
+  SettingOutlined,
+  MenuOutlined
 } from '@ant-design/icons-vue'
 
 const loginUserStore = useLoginUserStore()
 const router = useRouter()
+const { isMobile } = useMobile()
+const mobileMenuVisible = ref(false)
+
 // 当前选中菜单
 const selectedKeys = ref<string[]>(['/'])
 // 监听路由变化，更新当前选中菜单
@@ -337,26 +369,71 @@ const doLogout = async () => {
   background: var(--color-background-secondary);
 }
 
-/* 响应式 */
-@media (max-width: 768px) {
+/* 移动端汉堡菜单样式 */
+.mobile-menu-btn {
+  font-size: 20px;
+  color: var(--color-text);
+  cursor: pointer;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/* 移动端抽屉内的菜单项 */
+.mobile-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-item.active {
+  color: var(--color-primary);
+  background: var(--bg-primary-light);
+  font-weight: 500;
+}
+
+/* 移动端响应式样式覆盖 */
+@media screen and (max-width: 768px) {
   .header-container {
     padding: 0 16px;
   }
-
+  
   .site-title {
-    display: none;
+    font-size: 18px;
   }
-
-  .nav-item span {
-    display: none;
+  
+  .site-subtitle {
+    display: none; /* 移动端隐藏副标题以节省空间 */
   }
-
-  .nav-item {
-    padding: 8px 12px;
+  
+  .logo-img {
+    height: 28px;
   }
-
+  
+  .header-right {
+    flex-direction: row-reverse; /* 让汉堡包在最右侧，头像在左边一点 */
+  }
+  
   .user-name {
-    display: none;
+    display: none; /* 移动端隐藏用户名，只留头像 */
+  }
+  
+  .mobile-menu-btn {
+    margin-right: 0;
+    margin-left: 16px;
   }
 }
 </style>
