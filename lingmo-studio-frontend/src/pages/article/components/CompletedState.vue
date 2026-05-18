@@ -17,7 +17,12 @@
 
 <script setup lang="ts">
 import { CheckCircleFilled } from '@ant-design/icons-vue'
-import { markdownToHtml } from '@/utils/markdown'
+import { marked } from 'marked'
+
+const markdownToHtml = (markdown: string) => {
+  if (!markdown) return ''
+  return marked.parse(markdown) as string
+}
 
 defineProps<{
   article: Partial<API.ArticleVO>

@@ -8,5 +8,6 @@ import { marked } from 'marked'
  * @param markdown Markdown 内容
  */
 export const markdownToHtml = (markdown: string): string => {
-  return marked(markdown) as string
+  if (!markdown) return ''
+  return marked.parse(markdown) as string
 }

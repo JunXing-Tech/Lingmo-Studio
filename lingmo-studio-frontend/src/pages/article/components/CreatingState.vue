@@ -29,7 +29,7 @@
 
     <!-- 正文预览（流式输出） -->
     <div v-if="article.content" class="content-preview">
-      <div v-html="markdownToHtml(article.content)" class="markdown-body"></div>
+      <div v-html="markdownToHtml(article.content || '')" class="markdown-body"></div>
       <span v-if="isStreaming" class="typing-cursor">|</span>
     </div>
 

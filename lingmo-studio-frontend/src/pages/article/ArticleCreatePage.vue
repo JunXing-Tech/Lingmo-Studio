@@ -453,7 +453,8 @@ let eventSource: EventSource | null = null
 
 // Markdown 转 HTML
 const markdownToHtml = (markdown: string) => {
-  return marked(markdown)
+  if (!markdown) return ''
+  return marked.parse(markdown) as string
 }
 
 // 自动滚动到底部

@@ -111,7 +111,8 @@ const article = ref<API.ArticleVO | null>(null)
 
 // Markdown 转 HTML
 const markdownToHtml = (markdown: string) => {
-  return marked(markdown)
+  if (!markdown) return ''
+  return marked.parse(markdown) as string
 }
 
 // 加载文章
